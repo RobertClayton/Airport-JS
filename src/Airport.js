@@ -7,6 +7,10 @@ Airport.prototype.land = function(plane) {
   if (isStormy == true) {
     throw("Can not land due to storm");
   }
+  if (plane.inFlight() == false) {
+    throw("Can not land a plane that is not in flight")
+  }
+  plane.switchStatus();
   this.planes.push(plane);
 };
 
