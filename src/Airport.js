@@ -3,15 +3,20 @@ function Airport() {
 };
 
 Airport.prototype.land = function(plane) {
+  var isStormy = this._weather();
+  if (isStormy == true) {
+    throw("Can not land due to storm");
+  }
   this.planes.push(plane);
 };
 
 Airport.prototype.takeoff = function(plane) {
   var isStormy = this._weather();
-  if (isStormy == false) {
-    var planeIndex = this.planes.indexOf(plane);
-    this.planes.splice(planeIndex, 1);
+  if (isStormy == true) {
+    throw("Can not takeoff due to storm");
   }
+  var planeIndex = this.planes.indexOf(plane);
+  this.planes.splice(planeIndex, 1);
 };
 
 Airport.prototype._weather = function () {
