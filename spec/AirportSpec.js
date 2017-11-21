@@ -4,7 +4,9 @@ describe("Airport", function() {
 
   beforeEach(function() {
     airport = new Airport();
+    spyOn(airport, "_weather").and.returnValue(false);
   });
+
 
   describe("landing and takeoff", function() {
     it("can land a plane", function() {
@@ -13,6 +15,7 @@ describe("Airport", function() {
     });
 
     it("instruct a plane to takeoff", function() {
+      airport.land("plane");
       airport.takeoff("plane");
       expect(airport.planes.length).toEqual(0);
     });
